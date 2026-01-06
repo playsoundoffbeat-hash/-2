@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <title>PROJECT OFFBEAT - HEADQUARTERS</title>
     <style>
-        /* 1. 전체 테마 설정 */
-        :root {
-            --rich-gold: #D4AF37;
-            --deep-brown: #2a1a10;
-        }
-
+        /* 1. 전체 배경 및 테마 */
         body { 
             background-color: #000; 
-            color: var(--rich-gold);
+            color: #D4AF37; 
             margin: 0; 
             font-family: 'Courier New', Courier, monospace;
             display: flex;
@@ -21,53 +16,49 @@
             min-height: 100vh;
         }
 
-        /* 2. 상단 헤더 스타일 */
+        /* 2. 상단 헤더 (기존 디자인 복구) */
         header {
             width: 100%;
-            padding: 40px 5%;
+            padding: 50px 5%;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             box-sizing: border-box;
         }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 8px; }
+        .case-info { font-size: 0.8rem; text-align: right; opacity: 0.7; }
 
-        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 5px; }
-        .case-file { font-size: 0.8rem; opacity: 0.8; text-align: right; }
-
-        /* 3. 서랍장 컨테이너 (중앙 배치) */
+        /* 3. 서랍장 영역 (이미지가 없어도 형태 유지) */
         .main-content {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 20px;
         }
-
         .cabinet-container { 
             position: relative; 
             width: 95%; 
-            max-width: 1100px; /* 서랍장 크기 조절 */
-            min-height: 500px; /* 이미지 미로드 시 붕괴 방지 */
+            max-width: 1100px; 
+            min-height: 600px; /* 이미지가 안 떠도 박스가 겹치지 않게 고정 높이 부여 */
+            background-color: #050505; /* 이미지가 뜰 때까지 보여줄 어두운 배경 */
         }
+        .cabinet-img { width: 100%; display: block; border: 1px solid #1a1a1a; }
 
-        .cabinet-img { width: 100%; display: block; border: 1px solid #1a1a1a; box-shadow: 0 0 50px rgba(0,0,0,1); }
-
-        /* 4. 서랍 버튼 스타일 */
+        /* 4. 서랍 버튼 (노란색 선 위치) */
         .drawer-link { 
             position: absolute; 
             cursor: pointer; 
             border: 1px solid rgba(212, 175, 55, 0.1); 
             transition: all 0.4s ease;
         }
-
         .drawer-link:hover { 
-            border: 2px solid var(--rich-gold); 
+            border: 2px solid #D4AF37; 
             background-color: rgba(212, 175, 55, 0.08);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
-        /* 서랍 위치 (이미지 자른 상태에 최적화) */
+        /* 6칸 서랍 정밀 좌표 */
         .d1 { top: 3%;  left: 3%;  width: 45%; height: 28%; }
         .d2 { top: 3%;  left: 52%; width: 45%; height: 28%; }
         .d3 { top: 35%; left: 3%;  width: 45%; height: 28%; }
@@ -75,13 +66,44 @@
         .d5 { top: 67%; left: 3%;  width: 45%; height: 28%; } /* EP1 연결 */
         .d6 { top: 67%; left: 52%; width: 45%; height: 28%; }
 
-        /* 5. 하단 푸터 스타일 */
+        /* 5. 하단 푸터 (기존 디자인 복구) */
         footer {
             width: 100%;
-            padding: 40px;
+            padding: 60px 20px;
             text-align: center;
             font-size: 0.7rem;
             opacity: 0.5;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
-    </
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">PROJECT OFFBEAT</div>
+        <div class="case-info">
+            CENTRAL INTELLIGENCE ARCHIVE<br>
+            CODE NAME: #E-6801-A
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="cabinet-container">
+            <img src="cabinetv2.jpg" class="cabinet-img" alt="Intelligence Cabinet">
+            
+            <div class="drawer-link d1"></div>
+            <div class="drawer-link d2"></div>
+            <div class="drawer-link d3"></div>
+            <div class="drawer-link d4"></div>
+            
+            <a href="ep1.html" class="drawer-link d5" title="OPEN CASE LOG"></a>
+            
+            <div class="drawer-link d6"></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Project Offbeat Playlist. <br>
+        * Optimized for High-Fidelity Studio Monitoring via iZotope.
+    </footer>
+</body>
+</html>
