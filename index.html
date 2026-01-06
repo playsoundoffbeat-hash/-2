@@ -66,6 +66,22 @@
         .d5 { top: 60%; left: 5%;  width: 45%; height: 28%; } /* EP1 연결 */
         .d6 { top: 60%; left: 51%; width: 45%; height: 28%; }
 
+        /* 서랍 이름표 글자 스타일 */
+        .drawer-label {
+            position: absolute;
+            top: 50%; /* 박스 내 세로 중앙 */
+            left: 50%; /* 박스 내 가로 중앙 */
+            transform: translate(-50%, -50%); /* 정확한 정중앙 정렬 */
+            font-size: 0.7rem; /* 글자 크기 */
+            color: #D4AF37; /* 금색 */
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            pointer-events: none; /* 글자가 클릭을 방해하지 않게 함 */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.9); /* 글자 가독성 강화 */
+            white-space: nowrap; /* 줄바꿈 방지 */
+        }
+
         /* 5. 하단 푸터 (기존 디자인 복구) */
         footer {
             width: 100%;
@@ -95,7 +111,9 @@
             <div class="drawer-link d3"></div>
             <div class="drawer-link d4"></div>
             
-            <a href="ep1.html" class="drawer-link d5" title="OPEN CASE LOG"></a>
+            <a href="ep1.html" class="drawer-link d5" title="OPEN CASE LOG">
+                <span class="drawer-label">CASE #E-6801-A</span>
+            </a>
             
             <div class="drawer-link d6"></div>
         </div>
