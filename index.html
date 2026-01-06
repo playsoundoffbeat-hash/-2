@@ -4,72 +4,84 @@
     <meta charset="UTF-8">
     <title>PROJECT OFFBEAT - HEADQUARTERS</title>
     <style>
-        /* 1. 전체 배경 및 레이아웃 설정 */
-        body { 
-            background-color: #0d0d0d; /* 완전 검정보다 살짝 깊이감 있는 색 */
-            margin: 0; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; /* 세로 중앙 정렬을 위해 */
-            overflow-y: auto; /* 화면이 작으면 스크롤 허용 */
+        /* 1. 전체 테마 설정 */
+        :root {
+            --rich-gold: #D4AF37;
+            --deep-brown: #2a1a10;
         }
-        
-        /* 2. 서랍장 컨테이너 크기 (여기를 늘렸습니다!) */
+
+        body { 
+            background-color: #000; 
+            color: var(--rich-gold);
+            margin: 0; 
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 2. 상단 헤더 스타일 */
+        header {
+            width: 100%;
+            padding: 40px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 5px; }
+        .case-file { font-size: 0.8rem; opacity: 0.8; text-align: right; }
+
+        /* 3. 서랍장 컨테이너 (중앙 배치) */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+
         .cabinet-container { 
             position: relative; 
-            width: 95%; /* 화면 가로의 95%를 차지 */
-            max-width: 1400px; /* 너무 커지지 않게 최대폭 제한 (기존 900px -> 1400px로 확대) */
-            margin: 20px 0; /* 위아래 약간 여백 */
+            width: 95%; 
+            max-width: 1100px; /* 서랍장 크기 조절 */
+            min-height: 500px; /* 이미지 미로드 시 붕괴 방지 */
         }
-        .cabinet-img { 
-            width: 100%; 
-            display: block; 
-            border: 1px solid #1a1a1a; /* 미세한 테두리 */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); /* 묵직한 그림자 효과 */
-        }
-        
-        /* 3. 투명 버튼 스타일 (위치 잡기 편하게 노란 선을 더 잘 보이게 수정) */
+
+        .cabinet-img { width: 100%; display: block; border: 1px solid #1a1a1a; box-shadow: 0 0 50px rgba(0,0,0,1); }
+
+        /* 4. 서랍 버튼 스타일 */
         .drawer-link { 
             position: absolute; 
             cursor: pointer; 
-            border: 2px solid rgba(212, 175, 55, 0.3); /* 평소에도 희미하게 보여서 위치 확인 가능 */
-            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1); 
+            transition: all 0.4s ease;
         }
-        /* 마우스 올렸을 때 효과 */
+
         .drawer-link:hover { 
-            border: 3px solid rgba(255, 215, 0, 0.9); /* 진한 금색 테두리 */
-            background-color: rgba(255, 215, 0, 0.1); /* 금색 빛 번짐 */
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            border: 2px solid var(--rich-gold); 
+            background-color: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
-        /* 4. 6칸 서랍 위치 재조정 (이미지를 타이트하게 잘랐다고 가정했을 때의 근사치) */
-        /* ※ 만약 위치가 안 맞으면 top, left, width, height 숫자를 조금씩 바꿔보세요 ※ */
+        /* 서랍 위치 (이미지 자른 상태에 최적화) */
+        .d1 { top: 3%;  left: 3%;  width: 45%; height: 28%; }
+        .d2 { top: 3%;  left: 52%; width: 45%; height: 28%; }
+        .d3 { top: 35%; left: 3%;  width: 45%; height: 28%; }
+        .d4 { top: 35%; left: 52%; width: 45%; height: 28%; }
+        .d5 { top: 67%; left: 3%;  width: 45%; height: 28%; } /* EP1 연결 */
+        .d6 { top: 67%; left: 52%; width: 45%; height: 28%; }
 
-        /* 왼쪽 줄 */
-        .drawer-1 { top: 5%;  left: 5%;  width: 43%; height: 28%; } /* 상단 왼쪽 */
-        .drawer-3 { top: 36%; left: 5%;  width: 43%; height: 28%; } /* 중단 왼쪽 */
-        .drawer-5 { top: 67%; left: 5%;  width: 43%; height: 28%; } /* 하단 왼쪽 (ep1 연결됨) */
-
-        /* 오른쪽 줄 */
-        .drawer-2 { top: 5%;  left: 52%; width: 43%; height: 28%; } /* 상단 오른쪽 */
-        .drawer-4 { top: 36%; left: 52%; width: 43%; height: 28%; } /* 중단 오른쪽 */
-        .drawer-6 { top: 67%; left: 52%; width: 43%; height: 28%; } /* 하단 오른쪽 */
-
-    </style>
-</head>
-<body>
-    <div class="cabinet-container">
-        <img src="cabinetv2.jpg" class="cabinet-img" alt="Intelligence Cabinet">
-        
-        <div class="drawer-link drawer-1" onclick="alert('[접근 거부] 아직 열람할 수 없는 기밀입니다.')"></div>
-        <div class="drawer-link drawer-2"></div>
-        
-        <div class="drawer-link drawer-3"></div>
-        <div class="drawer-link drawer-4"></div>
-        
-        <a href="ep1.html" class="drawer-link drawer-5" title="OPEN LOG: EULJIRO INCIDENT"></a>
-        <div class="drawer-link drawer-6"></div>
-    </div>
-</body>
-</html>
+        /* 5. 하단 푸터 스타일 */
+        footer {
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            letter-spacing: 2px;
+        }
+    </
